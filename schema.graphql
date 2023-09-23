@@ -15,6 +15,11 @@ type User {
 }
 
 enum UserRole {
-  USER
   ADMIN
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
 }
