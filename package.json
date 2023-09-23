@@ -1,0 +1,16 @@
+{
+  "name": "hive-fe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "hive-check-development": "./hive-check-development.sh",
+    "hive-fetch-development": "./hive-fetch-development.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-hive/cli": "^0.29.0"
+  }
+}
