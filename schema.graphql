@@ -9,7 +9,7 @@ type ViewerQuery {
 }
 
 type User {
-  id: ID!
+  id: String!
   name: String!
   age: Int!
 }
