@@ -7,7 +7,8 @@
     "hive-check-development": "./hive-check-development.sh",
     "hive-fetch-development": "./hive-fetch-development.sh",
     "schema:diff": "graphql-inspector diff 'oldschema.graphql' 'schema.graphql' --rule './gql-inspector/custom-rule.js'",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "test": "test"
   },
   "keywords": [],
   "author": "",
