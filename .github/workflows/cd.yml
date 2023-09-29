@@ -19,7 +19,7 @@ jobs:
           hive artifact:fetch --artifact sdl \
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
-            --outputFile=master-be-schema.graphql
+            --outputFile=oldschema.graphql
 
       - name: schema diff
         run: npm run schema:diff

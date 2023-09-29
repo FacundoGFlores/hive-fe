@@ -6,7 +6,7 @@
   "scripts": {
     "hive-check-development": "./hive-check-development.sh",
     "hive-fetch-development": "./hive-fetch-development.sh",
-    "schema:diff": "graphql-inspector diff master-be-schema.graphql schema.graphql -- --rule './gql-inspector/custom-rule.js'",
+    "schema:diff": "graphql-inspector diff oldschema.graphql schema.graphql",
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "keywords": [],
