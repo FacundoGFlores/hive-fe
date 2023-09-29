@@ -22,8 +22,9 @@ jobs:
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
             --outputFile=oldschema.graphql
-      # - name: schema diff
-      #   run: graphql-inspector diff 'git:origin/master:./schema.graphql' 'schema.graphql'
+
+      - name: schema diff
+        run: npm run schema:diff
       
       - name: cleanup
         run: rm -rf master-be-schema.graphql
