@@ -8,9 +8,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: install dependencies
-        run: npm install
-      - name: install graphql-inspector for ci
-        run: npm i --global @graphql-inspector/diff-command
+        run: npm ci
       - name: fetch main schema from hive
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
