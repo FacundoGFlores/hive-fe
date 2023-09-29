@@ -1,25 +1,14 @@
+type Book {
+  author: String
+  isbn: String
+  title: String
+}
+
 type Query {
-  viewer: ViewerQuery!
-  user(id: ID!): User!
+  books: [Book]
 }
 
-type ViewerQuery {
-  user: User!
-  role: UserRole!
-}
-
-type User {
-  id: ID!
-  name: String!
-  age: Int!
-}
-
-enum UserRole {
-  ADMIN
-}
-
-type Post {
-  id: ID!
-  title: String!
-  content: String!
+type Author {
+  name: String
+  books: [Book]
 }

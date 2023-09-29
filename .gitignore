@@ -1,2 +1,4 @@
 .env
 node_modules
+master-be-schema.graphql
+oldschema.graphql

@@ -1,17 +1,37 @@
 on:
   pull_request:
     branches: [main]
+  repository_dispatch:
+    types:
+      - schema-published
+
 jobs:
   check:
     runs-on: ubuntu-22.04
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: schema check
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: fetch main schema from hive
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
+          HIVE_CDN_ENDPOINT: ${{ secrets.HIVE_CDN_ENDPOINT }}
+          HIVE_CDN_ACCESSTOKEN: ${{ secrets.HIVE_CDN_ACCESSTOKEN }}
         run: |
-          curl -sSL https://graphql-hive.com/install.sh | sh
-          hive schema:check "schema.graphql" \
-            --registry.accessToken ${{ env.HIVE_TOKEN }} \
-            --github
+          npx hive artifact:fetch --artifact sdl \
+            --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
+            --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
+            --outputFile=oldschema.graphql
+      - name: print old schema
+        run: cat oldschema.graphql
+      - name: print new schema
+        run: cat schema.graphql
+      - name: schema diff
+        run: npm run schema:diff
+      
+      - name: cleanup
+        run: rm -rf oldschema.graphql
+        
