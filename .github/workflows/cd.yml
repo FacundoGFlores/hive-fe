@@ -2,13 +2,9 @@ name: Schema Diff Workflow
 on:
   pull_request:
     branches: [main]
-  repository_dispatch:
-    types: [trigger-cd]  # Listen for the repository dispatch event
-    
 jobs:
   check:
     runs-on: ubuntu-22.04
-    if: github.event_name == 'pull_request' || github.event_name == 'repository_dispatch'  # Only run for PRs and repository dispatch events
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -26,10 +22,7 @@ jobs:
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
             --outputFile=oldschema.graphql
-      - name: print old schema
-        run: cat oldschema.graphql
-      - name: print new schema
-        run: cat schema.graphql
+     
       - name: schema diff
         run: npm run schema:diff
       
