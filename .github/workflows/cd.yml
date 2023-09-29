@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: install dependencies
-        run: npm i --global @graphql-inspector/ci @graphql-inspector/diff-command  @graphql-inspector/graphql-loader graphql
+        run: npm ci
 
       - name: fetch main schema from hive
         env:
@@ -17,8 +17,7 @@ jobs:
           HIVE_CDN_ENDPOINT: ${{ secrets.HIVE_CDN_ENDPOINT }}
           HIVE_CDN_ACCESSTOKEN: ${{ secrets.HIVE_CDN_ACCESSTOKEN }}
         run: |
-          curl -sSL https://graphql-hive.com/install.sh | sh
-          hive artifact:fetch --artifact sdl \
+          npx hive artifact:fetch --artifact sdl \
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
             --outputFile=oldschema.graphql
@@ -27,7 +26,7 @@ jobs:
       - name: print new schema
         run: cat schema.graphql
       - name: schema diff
-        run: graphql-inspector diff 'oldschema.graphql' 'schema.graphql'
+        run: npm run schema:diff
       
       - name: cleanup
         run: rm -rf oldschema.graphql
