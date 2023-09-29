@@ -5,12 +5,21 @@
   "main": "index.js",
   "scripts": {
     "hive-check-development": "./hive-check-development.sh",
-    "hive-fetch-development": "./hive-fetch-development.sh"
+    "hive-fetch-development": "./hive-fetch-development.sh",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@graphql-hive/cli": "^0.29.0"
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/schema-ast": "^4.0.0",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-hive/cli": "^0.29.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "graphql": "^16.8.1"
   }
 }
