@@ -1,12 +1,12 @@
+name: Schema Diff Workflow
 on:
   pull_request:
     branches: [main]
-  repository_dispatch:
-    types: [trigger-cd]
     
 jobs:
   check:
     runs-on: ubuntu-22.04
+    if: github.event_name == 'pull_request' || github.event_name == 'repository_dispatch'  # Only run for PRs and repository dispatch events
     steps:
       - name: checkout
         uses: actions/checkout@v3
