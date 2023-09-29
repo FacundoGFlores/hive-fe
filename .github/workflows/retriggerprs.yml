@@ -6,8 +6,8 @@ on:
       - schema-published
       
 jobs:
-  permissions: write-all
   trigger:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CD Workflow
