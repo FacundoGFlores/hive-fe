@@ -24,7 +24,7 @@ jobs:
             --outputFile=oldschema.graphql
 
       - name: schema diff
-        run: graphql-inspector diff oldschema.graphql schema.graphql
+        run: graphql-inspector diff 'oldschema.graphql' 'schema.graphql'
       
       - name: cleanup
         run: rm -rf oldschema.graphql
