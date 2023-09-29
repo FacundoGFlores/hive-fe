@@ -8,7 +8,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: install packages
-        run: npm ci
+        run: npm install
       - name: fetch main schema from hive
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
