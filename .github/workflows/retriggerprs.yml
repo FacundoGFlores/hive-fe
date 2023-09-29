@@ -1,0 +1,22 @@
+name: Frontend Workflow
+
+on:
+  repository_dispatch:
+    types:
+      - schema-published
+
+jobs:
+  retrigger_pull_requests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v2
+
+      # Trigger a pull request workflow for each open pull request
+      - name: Trigger Pull Requests
+        run: |
+          for pr in $(gh pr list --state open -q "base:main"); do
+            gh pr view $pr --json number --jq '.number' | xargs -I {} gh pr workflow {} --workflow 'Check' run
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
