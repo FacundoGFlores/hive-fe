@@ -16,7 +16,7 @@ jobs:
       - name: Trigger Pull Requests
         run: |
           for pr in $(gh pr list --state open -q "base:main"); do
-            gh pr view $pr --json number --jq '.number' | xargs -I {} gh pr workflow {} --workflow 'Check' run
+            gh pr view $pr --json number --jq '.number' | xargs -I {} gh pr workflow {} --workflow 'check' run
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
