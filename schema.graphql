@@ -6,6 +6,7 @@ type Author {
 
 type Book {
   author: String
+  id: ID!
   isbn: String
   title: String
 }
