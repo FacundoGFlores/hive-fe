@@ -2,9 +2,8 @@ on:
   pull_request:
     branches: [main]
   repository_dispatch:
-    types:
-      - schema-published
-
+    types: [trigger-cd]
+    
 jobs:
   check:
     runs-on: ubuntu-22.04
