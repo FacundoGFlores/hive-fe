@@ -7,11 +7,23 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: schema check
+      - name: install packages
+        run: npm ci
+      - name: fetch main schema from hive
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
+          HIVE_CDN_ENDPOINT: ${{ secrets.HIVE_CDN_ENDPOINT }}
+          HIVE_CDN_ACCESSTOKEN: ${{ secrets.HIVE_CDN_ACCESSTOKEN }}
         run: |
           curl -sSL https://graphql-hive.com/install.sh | sh
-          hive schema:check "schema.graphql" \
-            --registry.accessToken ${{ env.HIVE_TOKEN }} \
-            --github
+          hive artifact:fetch --artifact sdl \
+            --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
+            --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
+            --outputFile=master-be-schema.graphql
+
+      - name: schema diff
+        run: npm run schema:diff
+      
+      - name: cleanup
+        run: rm -rf master-be-schema.graphql
+        
