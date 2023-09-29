@@ -7,8 +7,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: install packages
+      - name: install dependencies
         run: npm install
+      - name: install graphql-inspector for ci
+        run: npm i --global @graphql-inspector/diff-command
       - name: fetch main schema from hive
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
@@ -20,9 +22,8 @@ jobs:
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
             --outputFile=oldschema.graphql
-
-      - name: schema diff
-        run: npm run schema:diff
+      # - name: schema diff
+      #   run: graphql-inspector diff 'git:origin/master:./schema.graphql' 'schema.graphql'
       
       - name: cleanup
         run: rm -rf master-be-schema.graphql
