@@ -22,7 +22,10 @@ jobs:
             --cdn.endpoint ${{ env.HIVE_CDN_ENDPOINT }} \
             --cdn.accessToken ${{ env.HIVE_CDN_ACCESSTOKEN }} \
             --outputFile=oldschema.graphql
-
+      - name: print old schema
+        run: cat oldschema.graphql
+      - name: print new schema
+        run: cat schema.graphql
       - name: schema diff
         run: graphql-inspector diff 'oldschema.graphql' 'schema.graphql'
       
