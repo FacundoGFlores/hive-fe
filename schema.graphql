@@ -7,3 +7,8 @@ type Book {
 type Query {
   books: [Book]
 }
+
+type Author {
+  name: String
+  books: [Book]
+}
