@@ -11,5 +11,5 @@ jobs:
       - name: GraphQL Inspector
         uses: kamilkisiela/graphql-inspector@v3.4.0  
         with: 
-          schema: 'schema.graphql'
+          schema: schema.graphql
           endpoint: 'https://c496d6e31894.ngrok.app'
