@@ -1,4 +1,3 @@
-name: Frontend Workflow
 name: Trigger CD Workflow
 
 on:
