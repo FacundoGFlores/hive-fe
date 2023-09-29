@@ -2,6 +2,8 @@ name: Schema Diff Workflow
 on:
   pull_request:
     branches: [main]
+  repository_dispatch:
+    types: [trigger-cd]  # Listen for the repository dispatch event
     
 jobs:
   check:
