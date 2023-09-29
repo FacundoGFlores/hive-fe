@@ -6,6 +6,7 @@ on:
       - schema-published
       
 jobs:
+  permissions: write-all
   trigger:
     runs-on: ubuntu-latest
     steps:
